@@ -27,12 +27,12 @@ export default async function Article({params}) {
   const minutes=Math.max(1,Math.ceil(article.content.join(" ").split(/\s+/).length/180));
   return <><Header/><PublicAd slot="BANNER_TOP"/><main className="site-width journal-article">
     <nav className="journal-breadcrumb" aria-label="পাতার অবস্থান"><Link href="/">প্রচ্ছদ</Link><span>›</span><Link href={`/category/${article.category}`}>{article.categoryLabel}</Link><span>›</span><span>সংবাদ</span></nav>
+    <div className="journal-article-layout"><article className="journal-article-main">
     <header className="journal-article-heading">
       <Link className="journal-article-category" href={`/category/${article.category}`}>{article.categoryLabel}</Link>
       <h1>{article.title}</h1>
       <div className="journal-byline"><div className="journal-author"><span className="journal-author-icon"><User size={21}/></span><div><strong>{article.author}</strong><div><span><Calendar size={13}/>{article.publishedAt}</span><span><BookOpen size={13}/>{minutes.toLocaleString("bn-BD")} মিনিট পাঠ</span></div></div></div><ArticleTools id={id} title={article.title}/></div>
     </header>
-    <div className="journal-article-layout"><article>
       {article.image && <figure className="journal-article-photo"><img src={article.image} alt={article.title} fetchPriority="high"/>{(article.caption || article.photoCredit) && <figcaption>{article.caption}{article.photoCredit && ` · ছবি: ${article.photoCredit}`}</figcaption>}</figure>}
       {article.videoUrl && <VideoPlayer key={article.videoUrl} url={article.videoUrl} title={article.title} poster={article.image}/>}
       <ArticleReader key={id} id={id} audioUrl={article.audioUrl} audioStatus={article.audioStatus} audioDelayed={article.audioDelayed} summary={article.aiSummary}/>
