@@ -39,3 +39,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Public API configuration template
+!.env.example
+
+# Local agent files and browser traces
+.commandcode/
+.playwright-mcp/
+
+# Historical reference-site captures
+docs/visual-review/

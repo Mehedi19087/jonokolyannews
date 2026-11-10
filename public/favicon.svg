@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#ffffff"/>
+  <rect width="62" height="62" x="1" y="1" rx="13" fill="none" stroke="#d1fae5" stroke-width="2"/>
+  <!-- Arch swoosh -->
+  <path d="M10 44 C24 35 40 35 54 44 C42 38 22 38 10 44 Z" fill="#047857"/>
+  <!-- Left person -->
+  <circle cx="24" cy="27" r="3.2" fill="#047857"/>
+  <path d="M19 36 C20 31 23 31 24 31 C25 31 28 31 29 36 C26.5 35 21.5 35 19 36 Z" fill="#047857"/>
+  <!-- Center person (prominent) -->
+  <circle cx="32" cy="21" r="4.2" fill="#f59e0b"/>
+  <path d="M25 34 C27 26 31 26 32 26 C33 26 37 26 39 34 C35.5 32 28.5 32 25 34 Z" fill="#f59e0b"/>
+  <!-- Right person -->
+  <circle cx="40" cy="27" r="3.2" fill="#047857"/>
+  <path d="M35 36 C36 31 39 31 40 31 C41 31 44 31 45 36 C42.5 35 37.5 35 35 36 Z" fill="#047857"/>
+</svg>

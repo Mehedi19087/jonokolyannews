@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# জনকল্যাণ নিউজ · Jonokolyan News
 
-## Getting Started
+A Bengali news website with tenant-specific articles, category pages, audio news, AI summaries, and date archives.
 
-First, run the development server:
+## Run locally
+
+Use Node.js 20.9 or later. The project was checked with Node.js 24.
 
 ```bash
+npm ci
+cp .env.example .env.local
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Backend connection
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The site uses the separate Django `newspaper` backend. Configure these server-side variables:
 
-## Learn More
+```env
+NEWS_API_BASE_URL=https://newspaper-web-production.up.railway.app
+NEWS_TENANT_SLUG=jonokolyannews
+```
 
-To learn more about Next.js, take a look at the following resources:
+Every news request sends the configured `X-Tenant-Slug` header. The backend supplies the menu categories, published news, article summaries, audio files, videos, and ads. An internet connection is required for the hosted backend and remote media. Empty categories show an empty state; sample stories do not replace failed requests.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Features
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Bengali category navigation and responsive news sections.
+- Article pages with audio playback, speed controls, and collapsible AI summaries.
+- Native video playback and supported YouTube embeds.
+- Search, author and date filters, district news, and calendar archives.
+- Saved articles, sharing, and reading-size controls.
+- Public ad slots with view and click tracking.
 
-## Deploy on Vercel
+The print and English pages show availability notices because their backend content is not yet supplied.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Main routes
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Page | Route |
+| --- | --- |
+| Home | `/` |
+| Category | `/category/[slug]` |
+| Article | `/news/[slug]` |
+| Search and latest news | `/archive`, `/search` |
+| Today's news | `/newstoday` |
+| Date calendar | `/archive-calendar` |
+| Photos and video | `/photostory`, `/tube` |
+
+See [the page and API map](docs/PUBLIC_API_MAP.md) for request details and tenant setup.
+
+## Checks and production build
+
+```bash
+npm test
+npm run lint
+npm run build
+npm start
+```
+
+`npm start` serves the production build. This app needs a Node.js host because it fetches data on the server and provides a public API proxy.
+
+## Project files
+
+- `src/app/`: pages, styles, and API proxy.
+- `src/components/`: header, footer, story layouts, and media controls.
+- `src/lib/`: backend requests, category links, and content formatting.
+- `public/`: publication images, icons, and Bengali fonts.
+- `tests/`: data and integration contract tests.
+- `docs/`: API notes and design review previews.
+
+## Design preview
+
+![Responsive category section](docs/design-review/section-desktop.png)
+
+[Mobile preview](docs/design-review/section-mobile.png). These design review captures show earlier published content; current stories depend on the selected backend tenant.
+
+The site uses Next.js, React, Tailwind CSS, and Lucide icons. Publication assets and local fonts are included as supplied with this project. News images and media remain subject to their source owners' rights. This repository does not grant a separate reuse license for those assets.
