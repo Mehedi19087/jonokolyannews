@@ -16,7 +16,41 @@ import VideoPlayer from "@/components/news/VideoPlayer";
 export async function generateMetadata({params}) {
   const id = decodeSegment((await params).id);
   const {article} = await getArticle(id);
-  return {title:`${article?.title || "সংবাদ পাওয়া যায়নি"} | জনকল্যাণ নিউজ`,description:article?.subtitle,openGraph:{images:article?.image?[{url:article.image,width:1200,height:650,alt:article?.title}]:[]}};
+  const title = article?.title ? `${article.title} | জনকল্যাণ নিউজ` : "সংবাদ পাওয়া যায়নি | জনকল্যাণ নিউজ";
+  const description = article?.subtitle || article?.aiSummary || (article?.content?.[0] ? article.content[0].slice(0, 160) : "জনকল্যাণ নিউজ");
+  const articleUrl = `https://jonokolyannews.com/news/${encodeURIComponent(id)}`;
+  const imageUrl = article?.image || "https://jonokolyannews.com/logo.png";
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: articleUrl,
+      siteName: "জনকল্যাণ নিউজ",
+      type: "article",
+      images: [
+        {
+          url: imageUrl,
+          secureUrl: imageUrl,
+          width: 1200,
+          height: 650,
+          alt: article?.title || "জনকল্যাণ নিউজ",
+          type: "image/jpeg",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [imageUrl],
+    },
+    alternates: {
+      canonical: articleUrl,
+    },
+  };
 }
 export default async function Article({params}) {
   const id = decodeSegment((await params).id);
