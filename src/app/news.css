@@ -225,7 +225,7 @@
 .journal-author>div>div{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:4px;color:#64707c;font-size:14px;line-height:1.5}
 .journal-author>div>div>span{display:inline-flex;align-items:center;gap:6px}
 .journal-article-photo{width:100%;margin:0}
-.journal-article-photo>img{display:block;width:100%;height:auto;object-fit:contain}
+.journal-article-photo>img{display:block;width:100%;max-width:1200px;aspect-ratio:1200/650;height:auto;object-fit:cover}
 .journal-article-photo figcaption{font-size:14px;line-height:1.6;color:#64707c;padding-block:12px;border-bottom:1px solid var(--line)}
 .journal-article-main>.journal-article-video,.journal-article-main>.native-video-player{margin:0}
 .journal-article-video{display:block;width:100%;aspect-ratio:16/9;border:0}

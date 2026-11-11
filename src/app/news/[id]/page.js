@@ -16,7 +16,7 @@ import VideoPlayer from "@/components/news/VideoPlayer";
 export async function generateMetadata({params}) {
   const id = decodeSegment((await params).id);
   const {article} = await getArticle(id);
-  return {title:`${article?.title || "সংবাদ পাওয়া যায়নি"} | জনকল্যাণ নিউজ`,description:article?.subtitle,openGraph:{images:article?.image?[article.image]:[]}};
+  return {title:`${article?.title || "সংবাদ পাওয়া যায়নি"} | জনকল্যাণ নিউজ`,description:article?.subtitle,openGraph:{images:article?.image?[{url:article.image,width:1200,height:650,alt:article?.title}]:[]}};
 }
 export default async function Article({params}) {
   const id = decodeSegment((await params).id);
@@ -33,7 +33,7 @@ export default async function Article({params}) {
       <h1>{article.title}</h1>
       <div className="journal-byline"><div className="journal-author"><span className="journal-author-icon"><User size={21}/></span><div><strong>{article.author}</strong><div><span><Calendar size={13}/>{article.publishedAt}</span><span><BookOpen size={13}/>{minutes.toLocaleString("bn-BD")} মিনিট পাঠ</span></div></div></div><ArticleTools id={id} title={article.title}/></div>
     </header>
-      {article.image && <figure className="journal-article-photo"><img src={article.image} alt={article.title} fetchPriority="high"/>{(article.caption || article.photoCredit) && <figcaption>{article.caption}{article.photoCredit && ` · ছবি: ${article.photoCredit}`}</figcaption>}</figure>}
+      {article.image && <figure className="journal-article-photo"><img src={article.image} alt={article.title} width={1200} height={650} fetchPriority="high"/>{(article.caption || article.photoCredit) && <figcaption>{article.caption}{article.photoCredit && ` · ছবি: ${article.photoCredit}`}</figcaption>}</figure>}
       {article.videoUrl && <VideoPlayer key={article.videoUrl} url={article.videoUrl} title={article.title} poster={article.image}/>}
       <ArticleReader key={id} id={id} audioUrl={article.audioUrl} audioStatus={article.audioStatus} audioDelayed={article.audioDelayed} summary={article.aiSummary}/>
       <div className="journal-article-body prose">{article.content.map((p,i)=><p key={i}>{p}</p>)}</div>
