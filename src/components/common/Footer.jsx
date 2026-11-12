@@ -46,9 +46,6 @@ export default function Footer() {
           </div>
           <div className="footer-editor">
             <p>সত্যের সন্ধানে, প্রতিদিন</p>
-            <p>
-              সম্পাদক ও প্রকাশক: <strong>ম. ম. রবি ডাকুয়া</strong>
-            </p>
           </div>
         </div>
         <nav className="footer-links">
@@ -62,8 +59,7 @@ export default function Footer() {
           <Link href="/print">প্রিন্ট সংস্করণ</Link>
         </nav>
         <p className="copyright">
-          স্বত্ব © ২০২৬ রবি ডাকুয়া{" "}
-          <span>সম্পাদক ও প্রকাশক: ম. ম. রবি ডাকুয়া</span>
+          স্বত্ব © ২০২৬ রবি ডাকুয়া
         </p>
       </div>
     </footer>
