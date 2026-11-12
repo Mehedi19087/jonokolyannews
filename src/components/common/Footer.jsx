@@ -59,7 +59,7 @@ export default function Footer() {
           <Link href="/print">প্রিন্ট সংস্করণ</Link>
         </nav>
         <p className="copyright">
-          স্বত্ব © ২০২৬ রবি ডাকুয়া
+          স্বত্ব © ২০২৬ Jonokolyan News
         </p>
       </div>
     </footer>
