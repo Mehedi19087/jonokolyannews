@@ -106,18 +106,19 @@ input,
 select {
   -webkit-tap-highlight-color: transparent;
 }
-button {
-  cursor: pointer;
-}
-button:disabled {
-  cursor: default;
-}
-button {
-  border: 0;
-  background: none;
-}
-button:hover {
-  color: var(--blue);
+/* Keep button defaults below Tailwind utilities so button variants stay visible. */
+@layer base {
+  button {
+    cursor: pointer;
+    border: 0;
+    background: none;
+  }
+  button:disabled {
+    cursor: default;
+  }
+  button:hover {
+    color: var(--blue);
+  }
 }
 img {
   display: block;
